@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+footer {
+  background-color: #404040;
+  display: flex;
+  padding: 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: row wrap;
+}
+
+footer h1, footer a, footer p {
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+footer h1 span {
+  font-weight: bold;
+}
+
+footer div.links {
+  text-align: center;
+  display: flex;
+  gap: 0px 40px;
+  
+}
+
+footer div.links a {
+    text-decoration: none;
+}
