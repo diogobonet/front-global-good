@@ -4,7 +4,7 @@ import React from 'react';
 const Header = () => {
   return (
     <header>
-      <h1>Meu Cabeçalho</h1>
+      <h1 class='logo-text'><span>Global</span>Good</h1>
     </header>
   );
 };
