@@ -13,9 +13,8 @@ const NotFound = () => {
         <div class='notfound'>
             <h1>404 Not Found</h1>
             <p>Your visited page not found. You may go home page.</p>
+            <Button placeholder="Back to home page" route="/" /> 
         </div>
-
-        <Button placeholder="Back to home page" route="/" /> 
       </main>
       <Footer />
     </div>
