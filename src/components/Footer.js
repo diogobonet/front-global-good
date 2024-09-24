@@ -11,7 +11,7 @@ const Footer = () => {
       </div>
 
       <div class='dropdown'>
-        <p>English</p>
+        <p>Language English</p>
       </div>
     </footer>
   );

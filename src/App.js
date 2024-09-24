@@ -2,7 +2,7 @@
 import React from 'react';
 import './styles/global.scss'; 
 import Home from './pages/Home'; // Importar a página
-import NotFound from './pages/NotFound'
+import NotFound from './pages/NotFound/NotFound'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

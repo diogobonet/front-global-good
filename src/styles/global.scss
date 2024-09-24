@@ -4,7 +4,6 @@ $text-color: #FFFFFF;
 $border-radius: 10px;
 $padding: 10px 20px;
 $footer-padding: 40px;
-$footer-gap: 40px;
 
 body {
   margin: 0;
@@ -17,10 +16,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-h1 {
+h1.logo-text {
+  font-weight: 400;
+  text-align: center;
 
+  span {
+    font-weight: bold;
+  }
 }
-
 
 .buttonMain {
   background-color: $primary-color;
@@ -28,7 +31,8 @@ h1 {
   color: white;
   border-radius: $border-radius;
   border: none;
-  padding: $padding;
+  padding: 10px 25px;
+  font-family: 'Poppins';
 }
 
 footer {
@@ -51,7 +55,7 @@ footer {
   div.links {
     text-align: center;
     display: flex;
-    gap: 0px $footer-gap;
+    gap: 40px;
     a {
       text-decoration: none;
 

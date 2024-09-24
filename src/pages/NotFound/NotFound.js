@@ -1,14 +1,14 @@
-// src/pages/Home.js
 import React from 'react';
-import Footer from '../components/Footer'
-import Button from '../components/Button';
+import Footer from '../../components/Footer'
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import './notfound.scss'
 
 const NotFound = () => {
   return (
     <div>
-      <header>
-          <h1><span>Global</span>Good</h1>
-      </header>
+      <Header />
+      
       <main>
         <div class='notfound'>
             <h1>404 Not Found</h1>
