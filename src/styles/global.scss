@@ -111,3 +111,15 @@ main:has(.notfound) {
       letter-spacing: 3%;
   }
 }
+
+/* AUTH TEMPLATES */
+.auth-main {
+  display: flex;
+  .sect-left {
+    width: 50%;
+
+    img {
+      width: 600px;
+    }
+  }
+}
