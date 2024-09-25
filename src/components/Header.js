@@ -1,25 +1,25 @@
 import React from 'react';
+import icon from '../assets/img/user_icon.png';
 
 const Header = ({ user, showLogin, showRegister }) => {
   return (
     <header className="header">
       <h1 class="logo-text"><span>Global</span>Good</h1>
-
-      {/* Exibe o botão de login */}
+      
       {showLogin && (
-        <button className="button" onClick={() => alert('Login')}>
-          Login
-        </button>
+        <a href="/" className='link-icon'>
+          <img src={icon} alt="Icon" className='icon'/>
+          Sign In
+        </a>
       )}
 
-      {/* Exibe o botão de registro */}
       {showRegister && (
-        <button className="button" onClick={() => alert('Registrar')}>
-          Registrar
-        </button>
+        <a href="/" className='link-icon'>
+          <img src={icon} alt="Icon" className='icon'/>
+          Sign up
+        </a>
       )}
 
-      {/* Exibe o nome do usuário */}
       {user && <div className="user">Olá, {user}</div>}
     </header>
   );

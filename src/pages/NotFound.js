@@ -1,8 +1,7 @@
 import React from 'react';
-import Footer from '../../components/Footer'
-import Button from '../../components/Button';
-import Header from '../../components/Header';
-import './notfound.scss'
+import Footer from '../components/Footer'
+import Button from '../components/Button';
+import Header from '../components/Header';
 
 const NotFound = () => {
   return (

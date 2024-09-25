@@ -1,8 +1,8 @@
 // src/App.js
 import React from 'react';
 import './styles/global.scss'; 
-import Home from './pages/Home'; // Importar a página
-import NotFound from './pages/NotFound/NotFound'
+import Home from './pages/Home'; 
+import NotFound from './pages/NotFound'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 const Home = () => {
   return (
     <div>
-      <Header /> {/* Utilizando o componente */}
+      <Header showLogin /> {/* Utilizando o componente */}
       <p>Bem-vindo à página inicial!</p>
       <Footer />
     </div>
