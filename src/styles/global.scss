@@ -1,4 +1,5 @@
 $primary-color: #DB4444;
+$primary-color-hover: #b04444;
 $footer-bg-color: #404040;
 $text-color: #FFFFFF;
 $border-radius: 5px;
@@ -38,7 +39,7 @@ h1.logo-text {
   cursor: pointer;
 
   &:hover {
-    background-color: #b04444;
+    background-color: $primary-color-hover;
   }
 }
 
@@ -113,13 +114,88 @@ main:has(.notfound) {
 }
 
 /* AUTH TEMPLATES */
-.auth-main {
-  display: flex;
-  .sect-left {
-    width: 50%;
+.auth-container {
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    padding: 0px 7rem;
+  }
 
-    img {
-      width: 600px;
+  .auth-main {
+    display: flex;
+    height: 100vh;
+    .sect-left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 65%;
+      background-color: #CBE4E8;
+      img {
+        width: 80%;
+      }
+    }
+    .auth-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 45%;
+      form {  
+        display: flex;
+        flex-direction: column;
+
+        div.text, div.inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        h1 {
+          font-size: 36px;
+          font-weight: normal;
+          letter-spacing: 4%;
+          margin: 0;
+        }
+
+        input {
+          border: none;
+          color: #3f3e3e;
+          padding: 12px 0px 12px 0px;
+          border-bottom: 1px solid #3f3e3e;
+          width: 23rem;
+          font-family: "Poppins";
+
+          &:focus {
+            outline: 0;
+          }
+        }
+
+        div.buttons {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 20px;
+
+          button {
+            margin-top: 0;
+          }
+          
+          button.buttonMain.register-button {
+            width: 100%;
+          }
+          
+          a {
+            color: $primary-color;
+            font-size: 14px;
+            text-decoration: none;
+            &:hover {
+              color: $primary-color-hover;
+            } 
+          }
+        }
+      }
     }
   }
 }

@@ -1,9 +1,11 @@
 // src/App.js
 import React from 'react';
 import './styles/global.scss'; 
+import './styles/media.scss'; 
 import Home from './pages/Home'; 
 import NotFound from './pages/NotFound';
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>
   );

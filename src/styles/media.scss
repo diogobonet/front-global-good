@@ -1,0 +1,21 @@
+@media (max-width: 1048px) {
+    .auth-container {
+        header {
+            position: relative;
+            bottom: 0;
+            right: 0;
+            width: inherit;
+        }
+
+        .auth-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column-reverse; 
+          }
+      
+          .auth-main .sect-left {
+              display: none;
+          }
+    }   
+}
