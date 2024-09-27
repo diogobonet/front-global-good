@@ -199,3 +199,34 @@ main:has(.notfound) {
     }
   }
 }
+
+.product-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 0px 7em;
+  
+  .sect-image {
+    img {
+      width: 100%;
+      max-width: 500px;
+      min-width: 250px;
+      max-height: 500px;
+      min-height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+  }
+
+  .sect-infos {
+    h1, p {
+      margin: 10px;
+    }
+    .product-value {
+      font-size: 38px;
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+}
