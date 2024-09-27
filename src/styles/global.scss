@@ -1,6 +1,5 @@
 $primary-color: #DB4444;
 $primary-color-hover: #b04444;
-$footer-bg-color: #404040;
 $text-color: #FFFFFF;
 $border-radius: 5px;
 $padding: 10px 20px;
@@ -21,9 +20,14 @@ code {
 h1.logo-text {
   font-weight: 400;
   text-align: center;
-
+  user-select: none;
+  cursor: pointer;
   span {
     font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+    color: black;
   }
 }
 
@@ -43,55 +47,9 @@ h1.logo-text {
   }
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 7rem;
-  flex-wrap: wrap;
 
-  .link-icon {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: 16px;
-    color: #000000;
-  }
 
-  .icon {
-    margin-right: 10px;
-  }
-}
 
-footer {
-  background-color: $footer-bg-color;
-  display: flex;
-  padding: 40px 7rem;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  h1, a, p {
-    color: $text-color;
-    font-weight: 400;
-
-    span {
-      font-weight: bold;
-    }
-  }
-
-  div.links {
-    text-align: center;
-    display: flex;
-    gap: 40px;
-    a {
-      text-decoration: none;
-
-      &:hover {
-        color: #9a9595;
-      }
-    }
-  }
-}
 
 /* NOT FOUND PAGE */
 main:has(.notfound) {

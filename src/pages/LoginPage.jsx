@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm';
 
 const LoginPage = () => {
   return (
-    <AuthTemplate title="">
+    <AuthTemplate title="" showRegister={true}>
         {<LoginForm /> }
     </AuthTemplate>
   );

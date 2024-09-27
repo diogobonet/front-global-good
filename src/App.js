@@ -1,7 +1,9 @@
 // src/App.js
 import React from 'react';
 import './styles/global.scss'; 
-import './styles/media.scss'; 
+import './styles/media.scss';
+import './styles/_header.scss';
+import './styles/_footer.scss';
 import Home from './pages/Home'; 
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';

@@ -4,7 +4,7 @@ import RegisterForm from '../components/RegisterForm';
 
 const RegisterPage = () => {
   return (
-    <AuthTemplate title="">
+    <AuthTemplate title="" showRegister={false}>
         <RegisterForm />
     </AuthTemplate>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from './Header';
 import Image from '../assets/img/auth_img.png'
-import Footer from '../components/Footer'
+import Footer from './Footer'
 
-const AuthTemplate = ({ title, children }) => {
+const AuthTemplate = ({ title, children, showRegister }) => {
   return (
     <div className="auth-container">
-        <Header showRegister/>
+        <Header showRegister={showRegister}/>
 
         <section className="auth-main">
             <section class="sect-left">
