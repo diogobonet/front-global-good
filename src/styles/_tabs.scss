@@ -1,0 +1,36 @@
+.tabs-container {
+    margin-top: 20px;
+    padding: 0px 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .tabs {
+        display: inherit;
+        gap: 30px;
+        button {
+            padding: 20px 8px;
+            border: none;
+            background-color: white;
+            font-family: 'Poppins';
+            font-size: 20px;
+            cursor: pointer;
+            border-bottom: 8px solid black;
+            width: 250px;
+            &:hover {
+                color: #b04444;
+                border-bottom: 8px solid #b04444;
+            }
+
+            
+        }
+        button.active {
+            font-weight: bold;
+            border-bottom: 12px solid black;
+            &:hover {
+                color: #b04444;
+                border-bottom: 12px solid #b04444;
+            }
+        }
+    }
+}

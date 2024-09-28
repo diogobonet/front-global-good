@@ -4,6 +4,7 @@ import './styles/global.scss';
 import './styles/media.scss';
 import './styles/_header.scss';
 import './styles/_footer.scss';
+import './styles/_tabs.scss';
 import Home from './pages/Home'; 
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';

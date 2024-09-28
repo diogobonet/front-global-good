@@ -3,8 +3,13 @@ import Footer from '../components/Footer'
 import Button from '../components/Button';
 import ProductImage from '../assets/img/auth_img.png'
 import Header from '../components/Header';
+import Tabs from '../components/Tabs';
 
 const ProductPage = () => {
+  const tabsData = [
+    { label: 'Products details', content: 'Este é o conteúdo da Aba 1.' },
+    { label: 'Reviews', content: 'Aqui está o conteúdo da Aba 2.' },
+  ];
   return (
     <div>
       <Header showLogin />
@@ -24,6 +29,9 @@ const ProductPage = () => {
 
                 <Button placeholder="Adicionar ao Carrinho" class="register-button" route="/" />
             </div>
+        </div>
+        <div>
+            <Tabs tabsData={tabsData} />
         </div>
       </main>
       <Footer />
