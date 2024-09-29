@@ -5,6 +5,7 @@
             bottom: 0;
             right: 0;
             width: inherit;
+            padding: 0px 5rem;
         }
 
         .auth-main {
@@ -18,6 +19,10 @@
               display: none;
           }
     }   
+
+    footer {
+        padding: 20px 5rem !important;
+    }
 }
 
 @media (max-width: 800px) {
