@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer'
 import Button from '../components/Button';
-import ProductImage from '../assets/img/auth_img.png'
+import ProductImage from '../assets/img/air.png'
 import Header from '../components/Header';
 import Tabs from '../components/Tabs';
 

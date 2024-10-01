@@ -1,6 +1,7 @@
 $primary-color: #DB4444;
 $primary-color-hover: #b04444;
-$text-color: #FFFFFF;
+$text-color-black: #000000;
+$text-color-white: #FFFFFF;
 $border-radius: 5px;
 $padding: 10px 20px;
 
@@ -31,14 +32,14 @@ h1.logo-text {
   }
   a {
     text-decoration: none;
-    color: black;
+    color: $text-color-black;
   }
 }
 
 .buttonMain {
   background-color: $primary-color;
   text-align: center;
-  color: white;
+  color: $text-color-white;
   border-radius: $border-radius;
   border: none;
   padding: 15px 50px;
@@ -140,10 +141,7 @@ main:has(.notfound) {
             margin-top: 0;
           }
           
-          button.buttonMain.register-button {
-            width: 100%;
-          }
-          
+
           a {
             color: $primary-color;
             font-size: 14px;
@@ -156,6 +154,10 @@ main:has(.notfound) {
       }
     }
   }
+}
+
+button.buttonMain.register-button {
+  width: 100%;
 }
 
 .product-main {
@@ -198,4 +200,47 @@ main:has(.notfound) {
       font-weight: bold;
     }
   }
+}
+
+/* HOME PAGE */
+main.home-main {
+  padding: 0px 7rem;
+  p {
+    text-align: center;
+  }
+
+  .product-card {
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 16px;
+    width: 235px;
+  
+    .product-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .price-div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .product-name {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+  
+    .product-price {
+      font-size: 16px;
+      color: #333;
+    }
+  
+    .product-discount {
+      font-size: 16px;
+      color: $primary-color;
+    }
+  }  
 }
