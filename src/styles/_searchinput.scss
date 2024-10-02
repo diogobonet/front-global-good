@@ -1,0 +1,21 @@
+.search-input-container {
+    position: relative;
+    input {
+        padding: 12px;
+        width: 320px;
+        border: 1px solid #808080;
+        border-radius: 20px;
+        font-family: 'Poppins';
+    }
+
+    button {
+        padding: 0;
+        margin: 0;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 10px;
+        left: 90%;
+        cursor: pointer;
+    }
+}

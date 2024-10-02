@@ -205,8 +205,28 @@ button.buttonMain.register-button {
 /* HOME PAGE */
 main.home-main {
   padding: 0px 7rem;
-  p {
-    text-align: center;
+  .infos-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .city-chip { 
+      display: flex;
+      gap: 4px;
+      padding: 12px;
+      border-radius: 20px;
+      color: $text-color-white;
+      background-color: $primary-color;
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 24px;
+    border-bottom: #FFAE5D dashed 3px;
+    padding: 8px 0px 8px 8px;
   }
 
   .product-card {
@@ -215,6 +235,7 @@ main.home-main {
     border-radius: 10px;
     padding: 16px;
     width: 235px;
+    margin-bottom: 12px;
   
     .product-image {
       max-width: 100%;
@@ -243,4 +264,11 @@ main.home-main {
       color: $primary-color;
     }
   }  
+
+  .product-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+  }
 }
