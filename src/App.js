@@ -6,7 +6,8 @@ import './styles/_header.scss';
 import './styles/_footer.scss';
 import './styles/_tabs.scss';
 import './styles/_searchinput.scss';
-import Home from './pages/Home'; 
+import Home from './pages/Home';
+import Checkout from './pages/Checkout'; 
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';
 import ProductPage from './pages/ProductPage';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   );
