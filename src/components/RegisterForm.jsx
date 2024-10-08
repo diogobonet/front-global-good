@@ -1,25 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import Button from './Button';
+import Button from './Button'; 
 
 const RegisterForm = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Lógica para login
-    console.log('Name', { name, email, password });
+
+    try {
+      const response = await axios.post('http://localhost:3001/users', {
+        name,
+        email,
+        password,
+        user_type_id: 2,
+      });
+
+      console.log('User created:', response.data);
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
   };
 
   return (
     <form onSubmit={handleRegister}>
-        <div class="text">
-          <h1>Create an account</h1>
-          <p>Enter your details below</p>
-        </div>
-      <div class="inputs">
-      <div>
+      <div className="text">
+        <h1>Create an account</h1>
+        <p>Enter your details below</p>
+      </div>
+      <div className="inputs">
+        <div>
           <input
             type="text"
             placeholder="Name"
@@ -47,8 +59,8 @@ const RegisterForm = () => {
           />
         </div>
       </div>
-      <div class="buttons">
-        <Button placeholder="Create Account" class="register-button" route="/" />
+      <div className="buttons">
+        <Button type="submit" placeholder="Create Account" className="register-button" />
       </div>
     </form>
   );
