@@ -1,32 +1,35 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/login', {
+      const response = await axios.post('http://localhost:3001/auth/me', {
         email,
-        password
+        password,
       });
 
-      if (response.data.success) { // Check for successful login response
-        setIsLoggedIn(true); // Update login state
-        console.log('Login successful, user:', response.data.user);
+      // Armazenar o token JWT no localStorage
+      localStorage.setItem('token', response.data.access_token);
 
-        // Store relevant user data (e.g., token, ID) in localStorage or cookies
-        localStorage.setItem('userToken', response.data.token); // Example using localStorage
-      } else {
-        console.error('Login failed:', response.data.message); // Handle failed login
-      }
+      // Redirecionar para a página protegida após login bem-sucedido
+      navigate('/');
     } catch (error) {
-      console.error('Error logging in:', error);
+      // Tratar erro de autenticação
+      if (error.response && error.response.status === 401) {
+        setErrorMessage('Credenciais inválidas. Tente novamente.');
+      } else {
+        setErrorMessage('Ocorreu um erro. Tente novamente mais tarde.');
+      }
     }
   };
 
@@ -57,7 +60,8 @@ const LoginForm = () => {
         </div>
       </div>
       <div className="buttons">
-        <Button placeholder={isLoggedIn ? 'Logged In' : 'Log In'} route="/" />
+        {errorMessage && <p className="error">{errorMessage}</p>} {/* Exibe a mensagem de erro */}
+        <Button type="submit" placeholder={"Sign In"} route="/" />
         <a href="/">Forgot password?</a>
       </div>
     </form>
