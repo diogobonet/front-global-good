@@ -68,7 +68,7 @@ main:has(.notfound) {
       font-size: 110px;
       font-weight: 400;
       margin: 0;
-      letter-spacing: 3%;
+      letter-spacing: 2px;
   }
 }
 
@@ -114,7 +114,7 @@ main:has(.notfound) {
         h1 {
           font-size: 36px;
           font-weight: normal;
-          letter-spacing: 4%;
+          letter-spacing: 2px;
           margin: 0;
         }
 
@@ -281,7 +281,7 @@ main.home-main {
   h1 {
     font-family: 'Inter';
     font-size: 36px;
-    letter-spacing: 4%;
+    letter-spacing: 2px;
     font-weight: 500;
   }
   form {
@@ -318,10 +318,10 @@ main.home-main {
   }
 
   .right-sect {
-    width: 50%;
+    width: 30%;
     .product-info {
       display: flex;
-      gap: 32px;
+      justify-content: space-between;
       width: 100%;
 
       img {
@@ -342,4 +342,3 @@ main.home-main {
     }
   }
 }
-
