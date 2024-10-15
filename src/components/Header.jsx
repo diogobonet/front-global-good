@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import icon from '../assets/img/user_icon.png';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import 'jwt-decode'; // sem chaves
+import { jwtDecode } from 'jwt-decode';
 
-const Header = ({ user, showRegister }) => {
+
+
+const Header = ({ showRegister }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        setUser(decodedToken.name); // Supondo que o campo 'name' contém o nome do usuário no JWT
+      } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+      }
+    }
+  }, []);
+
   const renderAuthLink = () => {
-    if (!showRegister) {
+    if (!user && !showRegister) {
       return (
         <Link to="/login" className="link-icon">
           <img src={icon} alt="Login Icon" className="icon" />
@@ -12,8 +31,8 @@ const Header = ({ user, showRegister }) => {
         </Link>
       );
     }
-    
-    if (showRegister) {
+
+    if (!user && showRegister) {
       return (
         <Link to="/register" className="link-icon">
           <img src={icon} alt="Register Icon" className="icon" />
@@ -34,7 +53,8 @@ const Header = ({ user, showRegister }) => {
       {renderAuthLink()}
 
       {user && (
-        <div className="user">
+        <div className="link-icon">
+          <img src={icon} alt="Register Icon" className="icon" />
           Olá, {user}
         </div>
       )}

@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import ProductPage from './pages/ProductPage';
 import RegisterPage from './pages/RegisterPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 
 function App() {
@@ -21,10 +22,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/notfound" element={<NotFound />} />
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/checkout" element={<Checkout />} />
+
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Rotas protegidas usando o ProtectedRoute */}
+        <Route 
+          path="/" 
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </Router>
   );

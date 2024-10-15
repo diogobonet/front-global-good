@@ -9,11 +9,31 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Validação dos campos de email e senha
+    if (!validateEmail(email)) {
+      setErrorMessage('Por favor, insira um email válido.');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setErrorMessage('A senha deve ter pelo menos 8 caracteres.');
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3001/auth/me', {
+      const response = await axios.post('http://localhost:3001/auth/login', {
         email,
         password,
       });
@@ -34,7 +54,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form id="loginForm" onSubmit={handleLogin}>
       <div className="text">
         <h1>Log in to GlobalGood</h1>
         <p>Enter your details below</p>
@@ -42,6 +62,7 @@ const LoginForm = () => {
       <div className="inputs">
         <div>
           <input
+            id="email"
             type="email"
             placeholder="Email"
             value={email}
@@ -51,6 +72,7 @@ const LoginForm = () => {
         </div>
         <div>
           <input
+            id="password"
             type="password"
             placeholder="Password"
             value={password}
@@ -61,7 +83,7 @@ const LoginForm = () => {
       </div>
       <div className="buttons">
         {errorMessage && <p className="error">{errorMessage}</p>} {/* Exibe a mensagem de erro */}
-        <Button type="submit" placeholder={"Sign In"} route="/" />
+        <Button type="submit" placeholder={"Sign In"}/>
         <a href="/">Forgot password?</a>
       </div>
     </form>

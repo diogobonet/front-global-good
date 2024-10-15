@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Button = ({ placeholder, route }) => {
+const Button = ({ type, placeholder, route }) => {
   const navigate = useNavigate(); // Hook para navegação programática
 
   const handleClick = () => {
@@ -10,7 +10,7 @@ const Button = ({ placeholder, route }) => {
   };
 
   return (
-    <button class='buttonMain' onClick={handleClick}>
+    <button type={type} class='buttonMain' onClick={handleClick}>
       {placeholder} {/* Exibe o texto passado como prop */}
     </button>
   );
