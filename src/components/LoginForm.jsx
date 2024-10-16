@@ -80,9 +80,9 @@ const LoginForm = () => {
             required
           />
         </div>
+        {errorMessage && <p className="error">{errorMessage}</p>} 
       </div>
       <div className="buttons">
-        {errorMessage && <p className="error">{errorMessage}</p>} {/* Exibe a mensagem de erro */}
         <Button type="submit" placeholder={"Sign In"}/>
         <a href="/">Forgot password?</a>
       </div>

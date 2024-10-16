@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';
 import ProductPage from './pages/ProductPage';
 import RegisterPage from './pages/RegisterPage';
+import ProductRegister from './pages/ProductRegister';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './auth/ProtectedRoute';
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/productregister" element={<ProductRegister />} />
 
         <Route path="/login" element={<LoginPage />} />
 
