@@ -3,8 +3,7 @@ import icon from '../assets/img/user_icon.png';
 import { Link } from 'react-router-dom';
 import 'jwt-decode'; // sem chaves
 import { jwtDecode } from 'jwt-decode';
-
-
+import UserDropdown from './UserDropdown';
 
 const Header = ({ showRegister }) => {
   const [user, setUser] = useState(null);
@@ -53,10 +52,7 @@ const Header = ({ showRegister }) => {
       {renderAuthLink()}
 
       {user && (
-        <div className="link-icon">
-          <img src={icon} alt="Register Icon" className="icon" />
-          Olá, {user}
-        </div>
+        <UserDropdown userName={user} />
       )}
     </header>
   );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import icon from '../assets/img/user_icon.png';
 
-const UserDropdown = ({ user }) => {
+const UserDropdown = ({ userName }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -19,7 +19,7 @@ const UserDropdown = ({ user }) => {
     <div className="user-dropdown">
       <div className="link-icon" onClick={toggleDropdown}>
           <img src={icon} alt="Register Icon" className="icon" />
-          Olá, {user}
+          Olá, {userName}
         </div>
 
       {isOpen && (

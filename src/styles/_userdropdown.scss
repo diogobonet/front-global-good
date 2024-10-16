@@ -1,0 +1,33 @@
+.user-dropdown {
+    display: flex;
+  }
+  
+  .dropdown-menu {
+    display: block;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+    z-index: 2;
+  }
+  
+  .dropdown-menu li {
+    padding: 10px;
+  }
+  
+  .dropdown-menu li button,
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    display: block;
+  }
+  
+  .dropdown-menu li button:hover,
+  .dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+  }
+  

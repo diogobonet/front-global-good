@@ -6,6 +6,7 @@ import './styles/_header.scss';
 import './styles/_footer.scss';
 import './styles/_tabs.scss';
 import './styles/_searchinput.scss';
+import './styles/_userdropdown.scss';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout'; 
 import NotFound from './pages/NotFound';
