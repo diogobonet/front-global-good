@@ -16,6 +16,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProductRegister from './pages/ProductRegister';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './auth/ProtectedRoute';
+import CategoryRegister from './pages/CategoryRegister';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/productregister" element={<ProductRegister />} />
 
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/categoryregister" element={<CategoryRegister />} />
 
         {/* Rotas protegidas usando o ProtectedRoute */}
         <Route 

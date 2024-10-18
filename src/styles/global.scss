@@ -355,9 +355,10 @@ main.product-register {
   .header-product {
     display: flex;
     justify-content: space-between;
-    button {
+    button.buttonMain {
       width: 250px;
       padding: 10px 20px !important;
+      margin-top: 30px;
     }
   }
   h1 {
@@ -365,6 +366,68 @@ main.product-register {
     font-size: 36px;
     letter-spacing: 2px;
     font-weight: 500;
+  }
+}
+
+table {
+  th {
+    text-align: start;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    label {
+      font-size: 16px;
+      color: #00000083;
+      span {
+        color: #db44448e;
+      }
+    }
+
+    input {
+      background-color: #F5F5F5;
+      border-radius: 4px;
+      padding: 10px;
+      width: 320px;
+      font-family: 'Poppins';
+      border: none;
+    }
+  }
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonMain.back {
+  background-color: #f5f5f5;
+  color: $text-color-black;
+
+  &:hover {
+    background-color: #cac7c7;
   }
 }
 

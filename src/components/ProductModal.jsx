@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function ProductModal({ isOpen, onClose, onSubmit }) {
   const [productData, setProductData] = useState({
@@ -10,6 +11,8 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
     isActive: true,
     category: '',
   });
+
+  const token = localStorage.getItem('token');
 
   // Gerar SKU automaticamente quando o modal abrir
   useEffect(() => {
@@ -30,9 +33,25 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(productData);
+    
+    try {
+      // Substitua pela URL real da sua API
+      const response = await axios.post('http://localhost:3001/products', productData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Incluindo o token no cabeçalho
+        },
+      });
+      
+      // Lida com resposta bem-sucedida
+      console.log('Product registered:', response.data);
+      onSubmit(productData);
+      onClose(); // Fechar modal após submissão
+    } catch (error) {
+      // Lida com erros
+      console.error('Error registering product:', error);
+    }
   };
 
   if (!isOpen) {
@@ -44,12 +63,12 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-content">
         <h2>Register Product</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="input-label">
             <label>SKU (Generated)</label>
             <input type="text" value={productData.sku} readOnly />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Name</label>
             <input
               type="text"
@@ -60,7 +79,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Description</label>
             <textarea
               name="description"
@@ -70,7 +89,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Quantity</label>
             <input
               type="number"
@@ -81,7 +100,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Unity Price</label>
             <input
               type="number"
@@ -93,7 +112,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Active</label>
             <input
               type="checkbox"
@@ -108,7 +127,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <div>
+          <div className="input-label">
             <label>Category</label>
             <input
               type="text"
@@ -119,10 +138,12 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          <button type="submit">Register Product</button>
-          <button type="button" onClick={onClose}>
-            Close
-          </button>
+          <div className="buttons">
+            <button type="submit" className="buttonMain">Register Product</button>
+            <button type="button" onClick={onClose} className="buttonMain back">
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>
