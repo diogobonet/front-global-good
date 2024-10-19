@@ -1,54 +1,45 @@
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CategoryModal from '../components/CategoryModal';
-import React, { useState, useEffect } from 'react';
 
 function CategoryRegister() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(''); // Para armazenar mensagens de erro
-
-  const fetchCategories = async () => {
-    try {
-      const token = localStorage.getItem('token'); // Certifique-se de que o token é válido
-      console.log('Fetching categories with token:', token); // Log do token
-  
-      const response = await fetch('http://localhost:3001/categories', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-  
-      console.log('Response status:', response.status); // Log do status da resposta
-  
-      // Verifica se a resposta não está ok
-      if (!response.ok) {
-        const errorText = await response.text(); // Obtém a resposta em texto
-        setErrorMessage(`Error: ${response.status} - ${errorText}`); // Armazena a mensagem de erro
-        throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
-      }
-  
-      // Tenta obter os dados da resposta
-      const dataText = await response.text(); // Primeiro, obtenha a resposta como texto
-      console.log('Response body:', dataText); // Log do corpo da resposta
-  
-      // Tente analisar o texto como JSON
-      const data = JSON.parse(dataText); // Tente fazer o parse do JSON
-      console.log('Fetched categories:', data); // Log dos dados recebidos
-      setCategories(data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-      setErrorMessage('Error fetching categories.'); // Armazena a mensagem de erro genérica
-    }
-  };
-  
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:3001/categories', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        setCategories(data);
+      } else {
+        const text = await response.text();
+        throw new Error(`Unexpected response format: ${text}`);
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -58,9 +49,8 @@ function CategoryRegister() {
     setIsModalOpen(false);
   };
 
-  const handleSubmitCategory = (categoryData) => {
-    console.log('Submitted category data:', categoryData);
-    setIsModalOpen(false);
+  const handleSubmitCategory = (newCategory) => {
+    // Handle category submission logic here
   };
 
   return (
@@ -73,7 +63,7 @@ function CategoryRegister() {
             Create new category
           </button>
         </div>
-        {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Exibe a mensagem de erro */}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <Table className="table">
           <thead>
             <tr>
