@@ -17,6 +17,12 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validação para verificar se o campo 'name' está preenchido
+    if (!categoryData.name.trim()) {
+      alert('Please enter a category name.'); // Alerta para o usuário
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:3001/categories', categoryData, {
         headers: {
@@ -25,6 +31,12 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
         },
       });
       onSubmit(response.data);
+
+      // Fecha o modal
+      onClose();
+
+      // Atualiza a página
+      window.location.reload();
     } catch (error) {
       console.error('Error creating category:', error.response ? error.response.data : error.message);
     }

@@ -7,11 +7,13 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
     name: '',
     description: '',
     quantity: 0,
-    unity_price: 0.0,
+    unity_price: 0,
     isActive: true,
-    category: '',
+    category_id: '',
   });
 
+  const [categories, setCategories] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(''); // Estado para mensagens de erro
   const token = localStorage.getItem('token');
 
   // Gerar SKU automaticamente quando o modal abrir
@@ -22,35 +24,48 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
         ...prevData,
         sku: generatedSku,
       }));
+      fetchCategories(); // Busca as categorias ao abrir o modal
     }
   }, [isOpen]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProductData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
+  const fetchCategories = async () => {
     try {
-      // Substitua pela URL real da sua API
-      const response = await axios.post('http://localhost:3001/products', productData, {
+      const response = await axios.get('http://localhost:3001/categories', {
         headers: {
-          Authorization: `Bearer ${token}`, // Incluindo o token no cabeçalho
+          Authorization: `Bearer ${token}`,
         },
       });
-      
-      // Lida com resposta bem-sucedida
+      setCategories(response.data); // Armazena as categorias recebidas
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: name === 'unity_price' || name === 'quantity' ? parseFloat(value) : value, // Converte para número
+    }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(productData.unity_price)
+
+    try {
+      const response = await axios.post('http://localhost:3001/products', productData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       console.log('Product registered:', response.data);
       onSubmit(productData);
       onClose(); // Fechar modal após submissão
     } catch (error) {
-      // Lida com erros
-      console.error('Error registering product:', error);
+      console.error('Error registering product:', error.response ? error.response.data : error.message);
     }
   };
 
@@ -106,11 +121,13 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
               type="number"
               name="unity_price"
               value={productData.unity_price}
-              step="0.01"
               onChange={handleChange}
               required
             />
           </div>
+
+          {/* Exibe mensagem de erro se o preço unitário for inválido */}
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
           <div className="input-label">
             <label>Active</label>
@@ -129,13 +146,19 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
 
           <div className="input-label">
             <label>Category</label>
-            <input
-              type="text"
-              name="category"
-              value={productData.category}
+            <select
+              name="category_id"
+              value={productData.category_id}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="buttons">
