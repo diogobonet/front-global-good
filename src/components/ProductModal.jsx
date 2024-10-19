@@ -3,7 +3,6 @@ import axios from 'axios';
 
 function ProductModal({ isOpen, onClose, onSubmit }) {
   const [productData, setProductData] = useState({
-    sku: '',
     name: '',
     description: '',
     quantity: 0,
@@ -19,11 +18,6 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
   // Gerar SKU automaticamente quando o modal abrir
   useEffect(() => {
     if (isOpen) {
-      const generatedSku = `SKU-${Date.now()}`;
-      setProductData((prevData) => ({
-        ...prevData,
-        sku: generatedSku,
-      }));
       fetchCategories(); // Busca as categorias ao abrir o modal
     }
   }, [isOpen]);
@@ -64,6 +58,14 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
       console.log('Product registered:', response.data);
       onSubmit(productData);
       onClose(); // Fechar modal após submissão
+      setProductData({
+        name: '',
+        description: '',
+        quantity: 0,
+        unity_price: 0,
+        isActive: true,
+        category_id: '',
+      });
     } catch (error) {
       console.error('Error registering product:', error.response ? error.response.data : error.message);
     }
@@ -78,11 +80,6 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
       <div className="modal-content">
         <h2>Register Product</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-label">
-            <label>SKU (Generated)</label>
-            <input type="text" value={productData.sku} readOnly />
-          </div>
-
           <div className="input-label">
             <label>Name</label>
             <input
