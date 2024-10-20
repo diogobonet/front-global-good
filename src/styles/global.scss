@@ -435,3 +435,33 @@ table {
   }
 }
 
+
+td:has(.edit-button) {
+  display: flex;
+  gap: 12px;
+  .edit-button {
+    background-color: #db4444;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #b04444;
+    }
+  }
+  .delete-button {
+    background-color: #db4444;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #b04444;
+    }
+  }
+}
+

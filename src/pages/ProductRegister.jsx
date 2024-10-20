@@ -2,36 +2,45 @@ import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductModal from '../components/ProductModal';
+import DeleteModal from '../components/DeleteModal'; // Importa o modal de delete
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ProductRegister() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [products, setProducts] = useState([]); // Inicialize como array vazio
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Estado para controlar o modal de deleção
+  const [products, setProducts] = useState([]);
+  const [selectedProductId, setSelectedProductId] = useState(null); // Estado para armazenar o ID do produto selecionado
   const token = localStorage.getItem('token');
 
-  // Função para abrir o modal de criação de produto
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  // Função para fechar o modal de criação de produto
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  // Função para buscar os produtos da API com autenticação
+  const handleOpenDeleteModal = (productId) => {
+    setSelectedProductId(productId); // Define o produto a ser deletado
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedProductId(null); // Limpa o produto selecionado
+  };
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get('http://localhost:3001/products', {
         headers: {
-          Authorization: `Bearer ${token}`, // Envia o token no cabeçalho
+          Authorization: `Bearer ${token}`, 
         },
       });
 
-      // Verifique se a resposta da API contém um array de produtos
       if (Array.isArray(response.data)) {
-        setProducts(response.data); // Atualiza o estado com os produtos recebidos
+        setProducts(response.data);
       } else {
         console.error('API response is not an array:', response.data);
       }
@@ -40,16 +49,32 @@ function ProductRegister() {
     }
   };
 
-  // Chama fetchProducts quando o componente é montado
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, []); // Corrigido para evitar loop infinito
 
   // Função chamada ao submeter um novo produto
   const handleSubmitProduct = (productData) => {
     console.log('Submitted product data:', productData);
     setIsModalOpen(false);
-    fetchProducts(); // Atualiza a tabela após o cadastro de um novo produto
+    fetchProducts();
+  };
+
+  // Função para deletar o produto
+  const handleDeleteProduct = async () => {
+    if (!selectedProductId) return;
+
+    try {
+      await axios.delete(`http://localhost:3001/products/${selectedProductId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      fetchProducts(); // Atualiza a lista de produtos após deletar
+      handleCloseDeleteModal(); // Fecha o modal de confirmação
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
   };
 
   return (
@@ -70,6 +95,7 @@ function ProductRegister() {
               <th>Quantity</th>
               <th>Unit Price</th>
               <th>Active</th>
+              <th>Category</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -81,9 +107,13 @@ function ProductRegister() {
                   <td>{product.name}</td>
                   <td>{product.description}</td>
                   <td>{product.quantity}</td>
-                  <td>${product.unity_price}</td> {/* Formata para 2 casas decimais */}
+                  <td>${product.unity_price}</td>
                   <td>{product.isActive ? 'Yes' : 'No'}</td>
-                  <td><button>Edit</button></td>
+                  <td>{product.category_id}</td>
+                  <td>
+                    <button className='edit-button'>Edit</button>
+                    <button className='delete-button' onClick={() => handleOpenDeleteModal(product.id)}>Delete</button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -99,6 +129,12 @@ function ProductRegister() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSubmit={handleSubmitProduct}
+      />
+
+      <DeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteModal}
+        onDelete={handleDeleteProduct} // Passa a função de deletar para o modal
       />
 
       <Footer />
