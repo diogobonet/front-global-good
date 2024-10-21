@@ -60,6 +60,7 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
               onChange={handleChange}
               required
               maxLength="30"
+              autoComplete='off'
             />
           </div>
 

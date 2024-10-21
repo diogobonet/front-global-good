@@ -88,6 +88,7 @@ function ProductModal({ isOpen, onClose, onSubmit }) {
               value={productData.name}
               onChange={handleChange}
               required
+              autoComplete='off'
             />
           </div>
 
