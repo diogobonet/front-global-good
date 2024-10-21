@@ -8,6 +8,7 @@ function CategoryRegister() {
   const [categories, setCategories] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null); // Adicionar estado para a categoria selecionada
 
   useEffect(() => {
     fetchCategories();
@@ -20,8 +21,8 @@ function CategoryRegister() {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
+          'Accept': 'application/json',
+        },
       });
 
       if (!response.ok) {
@@ -41,16 +42,30 @@ function CategoryRegister() {
     }
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (category = null) => {
+    setSelectedCategory(category); // Definir a categoria selecionada ou null para criar
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedCategory(null); // Resetar a categoria selecionada
   };
 
   const handleSubmitCategory = (newCategory) => {
-    // Handle category submission logic here
+    // Lógica de criação ou atualização de categoria após o envio
+    if (selectedCategory) {
+      // Atualizar a categoria na lista local
+      setCategories((prevCategories) =>
+        prevCategories.map((category) =>
+          category.id === newCategory.id ? newCategory : category
+        )
+      );
+    } else {
+      // Adicionar a nova categoria na lista local
+      setCategories((prevCategories) => [...prevCategories, newCategory]);
+    }
+    setIsModalOpen(false);
   };
 
   return (
@@ -59,7 +74,7 @@ function CategoryRegister() {
       <main className="product-register">
         <div className="header-product">
           <h1>Categories</h1>
-          <button className="buttonMain" type="button" onClick={handleOpenModal}>
+          <button className="buttonMain" type="button" onClick={() => handleOpenModal()}>
             Create new category
           </button>
         </div>
@@ -84,7 +99,8 @@ function CategoryRegister() {
                 <td>{new Date(category.updatedAt).toLocaleString()}</td>
                 <td>{category.deletedAt ? new Date(category.deletedAt).toLocaleString() : 'null'}</td>
                 <td>
-                  <button>Edit</button>
+                  <button className='edit-button' onClick={() => handleOpenModal(category)}>Edit</button>
+                  <button className='delete-button'>Delete</button>
                 </td>
               </tr>
             ))}
@@ -95,6 +111,7 @@ function CategoryRegister() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSubmit={handleSubmitCategory}
+        category={selectedCategory} // Passar a categoria selecionada
       />
       <Footer />
     </div>

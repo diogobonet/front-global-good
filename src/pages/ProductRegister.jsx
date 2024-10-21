@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductModal from '../components/ProductModal';
-import DeleteModal from '../components/DeleteModal'; // Importa o modal de delete
+import DeleteModal from '../components/DeleteProductModal'; // Importa o modal de delete
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 

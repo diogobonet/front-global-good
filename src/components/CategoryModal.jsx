@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function CategoryModal({ isOpen, onClose, onSubmit }) {
+function CategoryModal({ isOpen, onClose, onSubmit, category }) {
   const [categoryData, setCategoryData] = useState({
     name: '',
   });
+
+  useEffect(() => {
+    if (category) {
+      // Preencher os campos do modal com os dados da categoria selecionada
+      setCategoryData({
+        name: category.name,
+      });
+    } else {
+      // Resetar os dados se for uma nova categoria
+      setCategoryData({
+        name: '',
+      });
+    }
+  }, [category]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,28 +31,36 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validação para verificar se o campo 'name' está preenchido
     if (!categoryData.name.trim()) {
-      alert('Please enter a category name.'); // Alerta para o usuário
+      alert('Please enter a category name.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/categories', categoryData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      onSubmit(response.data);
+      const token = localStorage.getItem('token');
+      if (category) {
+        const response = await axios.patch(`http://localhost:3001/categories/${category.id}`, categoryData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log("editado!")
+        onSubmit(response.data);
+      } else {
+        // Se estiver criando, faz um POST
+        const response = await axios.post('http://localhost:3001/categories', categoryData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        onSubmit(response.data);
+      }
 
-      // Fecha o modal
       onClose();
-
-      // Atualiza a página
-      window.location.reload();
     } catch (error) {
-      console.error('Error creating category:', error.response ? error.response.data : error.message);
+      console.error('Error creating/updating category:', error.response ? error.response.data : error.message);
     }
   };
 
@@ -49,7 +71,7 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>Register Category</h2>
+        <h2>{category ? 'Edit Category' : 'Register Category'}</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-label">
             <label>Name</label>
@@ -65,7 +87,7 @@ function CategoryModal({ isOpen, onClose, onSubmit }) {
 
           <div className="buttons">
             <button type="submit" className="buttonMain">
-              Register Category
+              {category ? 'Update Category' : 'Register Category'}
             </button>
             <button type="button" onClick={onClose} className="buttonMain back">
               Close
