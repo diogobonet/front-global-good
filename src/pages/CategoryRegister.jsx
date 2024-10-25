@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CategoryModal from '../components/CategoryModal';
+import CategoryModal from '../mod/CategoryModal';
 
 function CategoryRegister() {
   const [categories, setCategories] = useState([]);

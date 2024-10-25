@@ -109,7 +109,7 @@ function ProductModal({ isOpen, onClose, onSubmit, mode = 'create', product = {}
               </div>
               <div className="input-label">
                 <label>Unity Price</label>
-                <input type="number" name="unity_price" value={productData.unity_price} onChange={handleChange} required />
+                <input type="number" name="unity_price" step="0.01" value={productData.unity_price} onChange={handleChange} required />
               </div>
               {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
               <div className="input-label">
@@ -126,6 +126,9 @@ function ProductModal({ isOpen, onClose, onSubmit, mode = 'create', product = {}
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="errors">
+                <p></p>
               </div>
               <div className="buttons">
                 <button type="submit" className="buttonMain">{mode === 'edit' ? 'Save' : 'Register'} Product</button>

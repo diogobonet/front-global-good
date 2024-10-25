@@ -31,7 +31,7 @@ function App() {
         <Route path="/productregister" element={<ProductRegister />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/categoryregister" element={
-          <ProtectedRoute allowedUserTypes={[2]}>
+          <ProtectedRoute allowedUserTypes={[1]}>
             <CategoryRegister />
           </ProtectedRoute>
         } />
@@ -42,9 +42,7 @@ function App() {
         <Route 
           path="/" 
           element={
-            <ProtectedRoute>
               <Home />
-            </ProtectedRoute>
           } 
         />
       </Routes>

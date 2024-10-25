@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ProductModal from '../components/ProductModal';
-import DeleteModal from '../components/DeleteProductModal'; // Importa o modal de delete
+import ProductModal from '../mod/ProductModal';
+import DeleteModal from '../mod/DeleteProductModal'; // Importa o modal de delete
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -11,7 +11,6 @@ function ProductRegister() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Estado para controlar o modal de deleção
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null); // Estado para armazenar o ID do produto selecionado
-  const token = localStorage.getItem('token');
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -32,6 +31,7 @@ function ProductRegister() {
   };
 
   const fetchProducts = async () => {
+    const token = localStorage.getItem('token');
     try {
       const response = await axios.get('http://localhost:3001/products', {
         headers: {
@@ -51,7 +51,7 @@ function ProductRegister() {
 
   useEffect(() => {
     fetchProducts();
-  }, []); // Corrigido para evitar loop infinito
+  }, []);
 
   // Função chamada ao submeter um novo produto
   const handleSubmitProduct = (productData) => {
@@ -63,7 +63,7 @@ function ProductRegister() {
   // Função para deletar o produto
   const handleDeleteProduct = async () => {
     if (!selectedProductId) return;
-
+    const token = localStorage.getItem('token');
     try {
       await axios.delete(`http://localhost:3001/products/${selectedProductId}`, {
         headers: {
