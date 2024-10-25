@@ -30,7 +30,13 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/productregister" element={<ProductRegister />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/categoryregister" element={<CategoryRegister />} />
+        <Route path="/categoryregister" element={
+          <ProtectedRoute allowedUserTypes={[2]}>
+            <CategoryRegister />
+          </ProtectedRoute>
+        } />
+
+        
 
         {/* Rotas protegidas usando o ProtectedRoute */}
         <Route 
