@@ -207,6 +207,12 @@ button.buttonMain.register-button {
 }
 
 /* HOME PAGE */
+div:has(.home-main) {
+  main {
+    height: 100% !important;
+  }
+}
+
 main.home-main {
   padding: 0px 7rem;
   .infos-header {
