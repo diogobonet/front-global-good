@@ -24,12 +24,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> {/* Catch all */}
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/productregister" element={<ProductRegister />} />
-
         <Route path="/login" element={<LoginPage />} />
         <Route path="/categoryregister" element={<CategoryRegister />} />
 

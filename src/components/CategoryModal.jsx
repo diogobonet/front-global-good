@@ -45,8 +45,8 @@ function CategoryModal({ isOpen, onClose, onSubmit, category }) {
             'Content-Type': 'application/json',
           },
         });
-        console.log("editado!")
         onSubmit(response.data);
+        console.log(`Editado! ${response.data}`)
       } else {
         // Se estiver criando, faz um POST
         const response = await axios.post('http://localhost:3001/categories', categoryData, {
