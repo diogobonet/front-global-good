@@ -18,11 +18,12 @@ const ProtectedRoute = ({ children, allowedUserTypes }) => {
         const response = await axios.get('http://localhost:3001/users', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        const userType = response.data.user_type;
+        const userType = response.data.user_type_id;
 
         // Verifica se o user_type está na lista de tipos permitidos
         if (!allowedUserTypes.includes(userType)) {
           navigate('/notfound'); // Redireciona para uma página de acesso não autorizado
+          console.log(userType)
         }
       } catch (error) {
         console.error('Erro ao verificar o tipo de usuário:', error);
