@@ -9,7 +9,7 @@ const NotFound = () => {
       <Header />
       
       <main>
-        <div class='notfound'>
+        <div className='notfound'>
             <h1>404 Not Found</h1>
             <p>Your visited page not found. You may go home page.</p>
             <Button placeholder="Back to home page" route="/" /> 
