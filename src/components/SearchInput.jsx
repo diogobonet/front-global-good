@@ -33,7 +33,7 @@ const SearchInput = ({ onSearch }) => {
         className="search-input"
       />
       <button onClick={handleSearch} className="search-button">
-        <span class="material-symbols-outlined"> search </span>
+        <span className="material-symbols-outlined"> search </span>
       </button>
     </div>
   );

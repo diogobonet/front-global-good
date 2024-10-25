@@ -21,16 +21,16 @@ const Home = () => {
   return (
     <div>
       <Header showLogin /> {/* Utilizando o componente */}
-      <main class="home-main">
+      <main className="home-main">
         <section className="infos-header">
-          <div class="city-chip">
-            <span class="material-symbols-outlined">location_on</span>
+          <div className="city-chip">
+            <span className="material-symbols-outlined">location_on</span>
             <p>Curitiba, PR</p>
           </div>
           <Search onSearch={handleSearch} />
         </section>
         <h1>hot deals for you</h1>
-        <section class="product-div">
+        <section className="product-div">
           <Product product={product} route="/product" />
           <Product product={product} />
           <Product product={product} />

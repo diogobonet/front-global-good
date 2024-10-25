@@ -9,7 +9,7 @@ const AuthTemplate = ({ title, children, showRegister }) => {
         <Header showRegister={showRegister}/>
 
         <section className="auth-main">
-            <section class="sect-left">
+            <section className="sect-left">
                 <img src={Image} alt="Cellphone"/>
             </section>
             <section className="auth-box">

@@ -409,13 +409,17 @@ table {
       }
     }
 
-    input {
+    input, textarea, select {
       background-color: #F5F5F5;
       border-radius: 4px;
       padding: 10px;
       width: 320px;
       font-family: 'Poppins';
       border: none;
+    }
+
+    textarea {
+      resize: vertical;
     }
   }
 }
@@ -438,6 +442,36 @@ table {
 
   &:hover {
     background-color: #cac7c7;
+  }
+}
+
+
+td:has(.edit-button) {
+  display: flex;
+  gap: 12px;
+  .edit-button {
+    background-color: #db4444;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #b04444;
+    }
+  }
+  .delete-button {
+    background-color: #db4444;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #b04444;
+    }
   }
 }
 

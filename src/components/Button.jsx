@@ -10,7 +10,7 @@ const Button = ({ type, placeholder, route }) => {
   };
 
   return (
-    <button type={type} class='buttonMain' onClick={handleClick}>
+    <button type={type} className='buttonMain' onClick={handleClick}>
       {placeholder} {/* Exibe o texto passado como prop */}
     </button>
   );
