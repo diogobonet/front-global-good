@@ -1,70 +1,252 @@
-# Getting Started with Create React App
+# GlobalGood - PT-BR
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GlobalGood é um produto de e-commerce B2B que oferece um sistema customizável para empresas. Nosso foco é atender empresas de pequeno e médio porte que desejam ingressar no mercado digital, facilitando a transformação digital através de uma plataforma moderna e funcional.
 
-## Available Scripts
+## Sobre o Projeto
 
-In the project directory, you can run:
+Este projeto foi desenvolvido como parte das disciplinas:
+- **Desenvolvimento Orientado a Reúso de Software**
+- **Medição e Análise de Processos e Produtos de Software**
 
-### `npm start`
+Cursadas no 6° período do curso de Engenharia de Software.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tecnologias Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Front-End
+- **React.js**: Interface do usuário moderna e responsiva.
+- **Axios**: Comunicação com o backend via requisições HTTP.
 
-### `npm test`
+### Back-End
+- **NestJS**: Framework robusto para desenvolvimento backend.
+- **MySQL**: Banco de dados relacional utilizado.
+- **TypeORM**: ORM utilizado com a abordagem Database First.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Arquitetura e Padrões de Projeto
 
-### `npm run build`
+### Arquitetura em Camadas
+Organiza o código em camadas distintas:
+- **Camada de Apresentação (Controller):** Recebe requisições e envia respostas.
+- **Camada de Aplicação/Serviço:** Contém a lógica de negócios.
+- **Camada de Configuração/Infraestrutura:** Gerencia variáveis de ambiente e definições dinâmicas de provedores.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Padrões Adotados
+- **Factory Pattern:** Utilizado para instanciar objetos com base em lógica configurável.
+- **Arquitetura Orientada a Configuração:** Permite alterar comportamentos do sistema via ajustes em configurações, sem modificar o código.
+- **Princípios SOLID:**
+  - **Single Responsibility Principle:** Cada classe possui uma única responsabilidade.
+  - **Open/Closed Principle:** O código está aberto para extensão e fechado para modificações.
+  - **Dependency Injection:** Facilita a inversão de controle para gerenciar dependências de forma eficiente.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Pontos de Variabilidade
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O sistema permite que os clientes personalizem:
 
-### `npm run eject`
+### Geração de SKU
+- **Opções:**
+  - Randômico
+  - Hexadecimal (baseado nas informações do produto)
+  - Recuperação dos 10 caracteres centrais
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Política de Devolução
+- Período de devolução configurável.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Configuração de Frete
+- Valor mínimo para frete.
+- Taxa por quilômetro com a fórmula:
+  ```
+  frete = custo_base + (distância * taxa_por_km)
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Recomendação de Produtos
+- Parâmetros ajustáveis:
+  - **sales_weight:** Peso das vendas
+  - **rating_weight:** Peso das avaliações
+  - **popularity_weight:** Peso da popularidade
+- Fórmula:
+  ```
+  pontuação = (vendas * sales_weight) + (avaliações * rating_weight) + (popularidade * popularity_weight)
+  ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Pontos de Fidelidade
+- Ativação ou desativação do recurso.
+- Opções de acumulação:
+  - Valor da compra
+  - Número de transações
+- Configuração da quantidade de pontos por opção escolhida.
 
-## Learn More
+## Instalação e Execução
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pré-requisitos
+- Node.js
+- MySQL
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Instalação
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/diogobonet/global-good
+   ```
+2. Navegue até a pasta do projeto:
+   ```bash
+   cd GlobalGood
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-### Code Splitting
+### Execução
+1. Configure as variáveis de ambiente:
+   - Exemplo no arquivo `.env.example`.
+2. Execute o backend:
+   ```bash
+   npm run start:backend
+   ```
+3. Execute o frontend:
+   ```bash
+   npm run start:frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Documentação Gerada
+Durante a disciplina **Medição e Análise de Processos e Produtos de Software**, foram gerados os seguintes artefatos:
+- Público-Alvo, Mapa de Empatia e Persona
+- Análise por Pontos de Função
+- COCOMO
+- COCOMO II
+- Especificação de Casos de Uso
+- Estimativa de Classe
+- GQM (Goal Question Metric)
+- Matriz de Rastreabilidade
+- Modelo Lógico de Banco de Dados
+- UCP (Use Case Points)
+   ```
 
-### Analyzing the Bundle Size
+## Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Este projeto está licenciado sob a [Apache-2.0](Apache-2.0).
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# GlobalGood - EN
 
-### Advanced Configuration
+GlobalGood is a B2B e-commerce product that offers a customizable system for companies. Our focus is to serve small and medium-sized businesses looking to enter the digital market, facilitating digital transformation through a modern and functional platform.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## About the Project
 
-### Deployment
+This project was developed as part of the following courses:
+- **Software Reuse-Oriented Development**
+- **Measurement and Analysis of Software Processes and Products**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Taken during the 6th semester of the Software Engineering program.
 
-### `npm run build` fails to minify
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Front-End
+- **React.js**: Modern and responsive user interface.
+- **Axios**: Backend communication via HTTP requests.
+
+### Back-End
+- **NestJS**: Robust framework for backend development.
+- **MySQL**: Relational database used.
+- **TypeORM**: ORM used with the Database First approach.
+
+## Architecture and Design Patterns
+
+### Layered Architecture
+Organizes code into distinct layers:
+- **Presentation Layer (Controller):** Handles requests and sends responses.
+- **Application/Service Layer:** Contains business logic.
+- **Configuration/Infrastructure Layer:** Manages environment variables and dynamic provider definitions.
+
+### Adopted Patterns
+- **Factory Pattern:** Used to instantiate objects based on configurable logic.
+- **Configuration-Oriented Architecture:** Enables behavior adjustments via configuration changes without modifying the code.
+- **SOLID Principles:**
+  - **Single Responsibility Principle:** Each class has a single responsibility.
+  - **Open/Closed Principle:** Code is open for extension and closed for modification.
+  - **Dependency Injection:** Facilitates inversion of control to efficiently manage dependencies.
+
+## Variability Points
+
+The system allows clients to customize:
+
+### SKU Generation
+- **Options:**
+  - Random
+  - Hexadecimal (based on product information)
+  - Extracting the 10 central characters
+
+### Return Policy
+- Configurable return period.
+
+### Shipping Configuration
+- Minimum shipping cost.
+- Per kilometer rate with the formula:
+
+```
+shipping_cost = base_cost + (distance * rate_per_km)
+```
+
+### Product Recommendation
+- Adjustable parameters:
+- **sales_weight:** Sales weight
+- **rating_weight:** Ratings weight
+- **popularity_weight:** Popularity weight
+- Formula:
+
+```
+score = (sales * sales_weight) + (ratings * rating_weight) + (popularity * popularity_weight)
+```
+
+### Loyalty Points
+- Enable or disable the feature.
+- Accumulation options:
+- Purchase value
+- Number of transactions
+- Configurable point allocation based on the chosen option.
+
+## Installation and Execution
+
+### Prerequisites
+- Node.js
+- MySQL
+
+### Installation
+1. Clone the repository:
+ ```bash
+ git clone https://github.com/diogobonet/global-good
+ ```
+2. Navigate to the project directory:
+```bash
+cd GlobalGood
+```
+3. Install dependencies:
+```bash
+npm install
+```
+
+### Execution
+1. Configure environment variables:
+    - Example in the ```.env.example```. file.
+
+2. Start the backend:
+```bash
+npm run start:backend
+```
+3. Start the frontend:
+```bash
+npm run start:frontend
+```
+### Documentation Generated
+During the **Measurement and Analysis of Software Processes and Products** course, the following artifacts were produced:
+- Target Audience, Empathy Map, and Persona
+- Function Point Analysis
+- COCOMO
+- COCOMO II
+- Use Case Specification
+- Class Estimation
+- GQM (Goal Question Metric)
+- Traceability Matrix
+- Logical Database Model
+- UCP (Use Case Points)
+
+### License
+This project is licensed under the Apache-2.0 license.
